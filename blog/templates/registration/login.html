@@ -1,7 +1,6 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +15,7 @@
     {% endif %}
     <form action="{% url 'login' %}" method="POST">
       {% csrf_token %}
-       {% form.as_p %}
+       {{ form.as_p }}
       <input type="submit" class="" value="login">
       <input type="hidden" name="next" value="{{next}}">
 
