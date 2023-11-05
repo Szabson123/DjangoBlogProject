@@ -15,7 +15,7 @@ class Post(models.Model):
         self.save()
 
     def get_absolute_url(self):
-        return reverse('blog:blog_details', kwargs={"pk": self.pk})
+        return reverse('post_detail', kwargs={"pk": self.pk})
 
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
@@ -36,7 +36,7 @@ class Comment(models.Model):
         self.save()
 
     def get_absolute_url(self):
-        return reverse('blog:post_list', kwargs={"pk": self.pk})
+        return reverse('post_list', kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.text
