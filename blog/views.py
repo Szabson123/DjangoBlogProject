@@ -49,7 +49,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     model = Post
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__isnull=True).order_by('created_date')
+        return Post.objects.filter(published_date__isnull=True).order_by('create_date')
 
 @login_required()
 def post_publish(request, pk):
@@ -76,8 +76,23 @@ def add_comment_to_post(request, pk):
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     #Taking from Models and changing it from False to True beacause we taking this def
-    comment_approve()
+    comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
+
+@login_required
+def comment_edit(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=comment.post.pk)
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'blog/comment_form.html', {'form': form})
+
 
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)

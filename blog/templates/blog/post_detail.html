@@ -27,10 +27,10 @@
             {% if user.is_authenticated or comment.approved_comment %}
                 {{comment.created_date}}
                 {% if not comment.approved_comment %}
-                    <a class="btn btn-primary" href="{% url 'comment_edit' pk=comment.pk %}">
+                    <a class="btn btn-primary" href="{% url 'comment_edit' pk=comment.pk %}">Edit
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}">
+                    <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}">Approve
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 {% endif %}
