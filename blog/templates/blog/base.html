@@ -47,6 +47,9 @@
                             <a class="nav-link disabled">Welcome {{ user.username }}</a>
                         </li>
                     {% else %}
+                        <li>
+                            <a class="nav-link" href="{% url 'newsletter_signup' %}">Newsletter</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>

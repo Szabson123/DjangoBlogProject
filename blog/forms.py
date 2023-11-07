@@ -24,3 +24,9 @@ class CommentForm(forms.ModelForm):
             'text': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'})
 
         }
+
+
+class NewsLetterSignupForm(forms.Form):
+    name = forms.CharField(max_length=50)
+    email = forms.EmailField()
+
