@@ -1,6 +1,13 @@
 {% extends "blog/base.html" %}
 {% block content %}
+
+
 <div class="centerstage">
+    <form class="d-flex" method="POST" action="{% url 'search_post' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
     {% for post in post_list %}
     <div class="post">
         <h1><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.title }}</a></h1>

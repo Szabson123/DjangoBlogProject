@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-
+from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    text = models.TextField()
+    text = RichTextField()
     create_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 

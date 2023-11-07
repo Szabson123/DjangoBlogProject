@@ -1,14 +1,16 @@
 {% extends "blog/base.html" %}
 {% block content %}
 <h1 class="posttitle loader" xmlns="http://www.w3.org/1999/html">{{post.title}}</h1>
+
+<hr>
     {% if post.published_date %}
         <div class="date postdate">
-            {{ post.published_date }}
+            <h4>{{ post.published_date }}</h4>
         </div>
     {% else %}
         <a class="btn btn-secondary" href="{% url 'post_approve' pk=post.pk %}">Publish</a>
     {% endif %}
-    <p class="postcontent">{{ post.title|safe|linebreaksbr}}</p>
+    <p class="postcontent">{{ post.text|safe|linebreaksbr }}</p>
 
     {% if user.is_authenticated %}
     <a class="btn btn-primary" href="{% url 'post_update' pk=post.pk %}">Update

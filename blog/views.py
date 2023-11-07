@@ -99,3 +99,12 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('post_detail', pk=post_pk)
+
+
+def search_post(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        posts = Post.objects.filter(title__contains=searched)
+        return render(request, 'blog/search_post.html', {'searched': searched, 'posts': posts})
+    else:
+        return render(request, 'blog/search_post.html')
